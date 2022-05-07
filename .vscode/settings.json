@@ -1,0 +1,8 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/kustomization.json": [
+            "file:///e%3A/projet/les%20jackson%20microservice/K8S/local-pvc.yaml",
+            "file:///e%3A/projet/les%20jackson%20microservice/K8S/mssql-plat-depl.yaml"
+        ]
+    }
+}

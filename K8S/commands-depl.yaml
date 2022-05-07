@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: command-depl
+spec:
+  #number of instances minimum even if its destroyed
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commandservice
+      #defining the pods and container we're gonna use
+  template:
+    metadata:
+      labels:
+      # should have matchlabels app
+        app: commandservice
+    spec:
+      containers:
+        - name: commandservice
+          image: mahcih95/commandservice:latest
+
+# the "---" helps us to separate deployment from Cluster IP configuration
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  # the name will be used in appsettings.production as the URL
+  name: command-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: commandservice
+  ports:
+  - name: commandservice
+    protocol: TCP 
+    port: 80
+    targetPort: 80
